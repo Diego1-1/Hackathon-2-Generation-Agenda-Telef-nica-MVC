@@ -41,7 +41,7 @@ Crear una aplicación de escritorio para la gestión de una agenda telefónica, 
 
 ##  Arquitectura
 
-
+```
 ├── modelo/
 │ ├── Contacto.java <── Datos puros de la entidad
 │ └── Agenda.java <── Lógica de negocio (Array/List de
@@ -59,6 +59,7 @@ coordina el modelo
 │
 └── Main.java <── Orquestador: Instancia el Modelo, la
 Vista y los conecta
+```
 
 **Regla de desacoplamiento**
 
