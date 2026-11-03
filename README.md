@@ -44,21 +44,16 @@ Crear una aplicación de escritorio para la gestión de una agenda telefónica, 
 ```
 ├── modelo/
 │ ├── Contacto.java <── Datos puros de la entidad
-│ └── Agenda.java <── Lógica de negocio (Array/List de
-contactos)
+│ └── Agenda.java <── Lógica de negocio (Array/List de contactos)
 │
 ├── vista/
-│ ├── VentanaPrincipal.java <── JFrame y construcción de componentes
-Swing
-│ └── ComponentesGraficos.java<── Opcional: paneles o tablas
-personalizadas
+│ ├── VentanaPrincipal.java <── JFrame y construcción de componentes Swing
+│ └── ComponentesGraficos.java<── Opcional: paneles o tablas personalizadas
 │
 ├── controlador/
-│ └── AgendaControlador.java <── Escucha los eventos de la vista y
-coordina el modelo
+│ └── AgendaControlador.java <── Escucha los eventos de la vista y coordina el modelo
 │
-└── Main.java <── Orquestador: Instancia el Modelo, la
-Vista y los conecta
+└── Main.java <── Orquestador: Instancia el Modelo, la Vista y los conecta
 ```
 
 **Regla de desacoplamiento**
