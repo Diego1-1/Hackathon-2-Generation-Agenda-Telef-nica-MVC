@@ -41,7 +41,7 @@ Crear una aplicación de escritorio para la gestión de una agenda telefónica, 
 
 ##  Arquitectura
 
-```
+
 ├── modelo/
 │ ├── Contacto.java <── Datos puros de la entidad
 │ └── Agenda.java <── Lógica de negocio (Array/List de
@@ -58,7 +58,7 @@ personalizadas
 coordina el modelo
 │
 └── Main.java <── Orquestador: Instancia el Modelo, la
-Vista y los conecta```
+Vista y los conecta
 
 **Regla de desacoplamiento**
 
@@ -66,7 +66,7 @@ Vista y los conecta```
 - Las clases del paquete `vista` **no deciden qué ocurre al hacer clic**: solo exponen sus componentes mediante getters.
 - El `controlador` asigna los `ActionListener` a la vista y actualiza la tabla (`DefaultTableModel`) con los datos del modelo.
 
-### Métodos de `Agenda`
+## Métodos de `Agenda`
 
 | Método | Descripción |
 |--------|-------------|
