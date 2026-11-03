@@ -55,10 +55,21 @@ public class AgendaControlador {
                    vista.getTxtApellido().getText(),
                    vista.getTxtTelefono().getText());
 
+            if (agenda.existeContacto(c)) {
+                vista.mostrarError("El contacto ya existe.");
+                return;
+            }
+            if (agenda.AgendaLlena()) {
+                vista.mostrarError("La agenda está llena.");
+                return;
+            }
+
            agenda.añadirContacto(c);// pedimos a la agenda que lo guarde y valida si hay duplicados y espacios
            refrescarTabla();//este puento es si no hubo un error y se actualiza la tabla ára mostrarnos el nuevo contacto
            limpiarFormulario();// se vacia el formulario para el siguiente registr
            vista.mostrarExito("contacto agregado espacios libres "+ agenda.espaciosLibres());
+
+
 
 
 
@@ -74,15 +85,18 @@ public class AgendaControlador {
     // modificar
     private void modificarTelefono() {
         try {
-          agenda.modificarTelefono(// la agenda busca el contacto por nombre y apellido
-                vista.getTxtNombre().getText(),
-                vista.getTxtApellido().getText(),
-                vista.getTxtTelefono().getText()
-          );
-          refrescarTabla();//actualizamos la tabla para que s e vea el telefono nuevo
-          vista.mostrarExito("telefono actualizado correctamente"); //mensaje verde de exito
-        } catch (RuntimeException ex ){
-            vista.mostrarError(mensaje(ex));//mensaje rojo si el contacto no existe o el telefono es errado
+            String resultado = agenda.modificarTelefono(
+                    vista.getTxtNombre().getText(),
+                    vista.getTxtApellido().getText(),
+                    vista.getTxtTelefono().getText());
+            refrescarTabla();
+            if (resultado.startsWith("Teléfono actualizado")) {
+                vista.mostrarExito(resultado);
+            } else {
+                vista.mostrarError(resultado);
+            }
+        } catch (RuntimeException ex) {
+            vista.mostrarError(mensaje(ex));
         }
     }
 
