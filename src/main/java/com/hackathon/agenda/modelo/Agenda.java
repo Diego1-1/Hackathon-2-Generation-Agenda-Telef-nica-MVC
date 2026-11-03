@@ -33,7 +33,8 @@ public class Agenda {
         }
     }
 
-    public espaciosLibres() {
+    public int espaciosLibres() {
+
         return this.capacidadMaxima - this.contactos.size();
     }
 
