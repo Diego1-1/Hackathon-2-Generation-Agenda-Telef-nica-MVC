@@ -173,4 +173,8 @@ public class VentanaPrincipal extends JFrame {
         mensajeEstado.setText(mensaje);
         mensajeEstado.setForeground(Color.RED);
     }
+
+    public void actualizarEspaciosLibres(int libres) {
+        espaciosLibres.setText("Espacios libres: " + libres);
+    }
 }
