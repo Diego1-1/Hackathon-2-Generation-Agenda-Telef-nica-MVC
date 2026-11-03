@@ -120,7 +120,7 @@ public class AgendaControlador {
     private void buscar() {
         try {
             String telefono = agenda.buscarContacto(
-                    vista.getTxtnombre().getText(),
+                    vista.getTxtNombre().getText(),
                     vista.getTxtApellido().getText());
 
             if(telefono == null) {//condicion si devuielve null
