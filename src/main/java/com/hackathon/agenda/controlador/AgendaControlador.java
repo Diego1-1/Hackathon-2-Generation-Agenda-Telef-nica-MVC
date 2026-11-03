@@ -50,6 +50,15 @@ public class AgendaControlador {
         try{// con try intrntamos hacer la operacion, si algo falla saltamos al cathc
            //creamos un contacto con lo que el usuario escribio en llos 3 campos
            // el contructor de contacto valida nombre vacios etc y lanza la exepcion de que algo esta mal
+
+            if (!soloLetras(vista.getTxtNombre().getText())) {
+                vista.mostrarError("El nombre solo puede tener letras.");
+                return;
+            }
+            if (!soloLetras(vista.getTxtApellido().getText())) {
+                vista.mostrarError("El apellido solo puede tener letras.");
+                return;
+            }
            Contacto c = new Contacto(
                    vista.getTxtNombre().getText(),
                    vista.getTxtApellido().getText(),
@@ -162,6 +171,9 @@ public class AgendaControlador {
 
         }
         vista.actualizarEspaciosLibres(agenda.espaciosLibres());
+    }
+    private boolean soloLetras(String texto) {
+        return texto != null && texto.trim().matches("^\\p{L}+(\\s\\p{L}+)*$");
     }
 
     // copa de los datows de la fila que elegimos
