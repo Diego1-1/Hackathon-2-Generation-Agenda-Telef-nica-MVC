@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:6.0.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+tasks.register('crearEstructuraHackathon') {
+    doLast {
+        def rutaBase = "src/main/java/com/hackathon/agenda"
+        def paquetes = ['modelo', 'vista', 'controlador']
+
+        paquetes.each { paquete ->
+            def carpeta = file("${rutaBase}/${paquete}")
+            if (!carpeta.exists()) {
+                carpeta.mkdirs()
+                println "📁 Paquete creado: ${carpeta.path}"
+            }
+        }
+
+        // Crea el archivo Main.java en la raíz de la agenda si no existe
+        def mainFile = file("${rutaBase}/Main.java")
+        if (!mainFile.exists()) {
+            mainFile.text = "package com.hackathon.agenda;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Orquestador\n    }\n}"
+            println "📄 Archivo creado: ${mainFile.path}"
+        }
+    }
+}
