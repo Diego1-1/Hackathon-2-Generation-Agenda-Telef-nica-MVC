@@ -131,9 +131,9 @@ java -cp build/classes/java/main com.hackathon.agenda.Main
 ##  Equipo
 
 Proyecto desarrollado por el equipo del Hackathon 2 de **Generation Colombia**.
-Alan Melo
-Diana Hinestroza
-Diego Moreno
-Estefany Hernandez
-Pedro Saravia
+- Alan Melo
+- Diana Hinestroza
+- Diego Moreno
+- Estefany Hernandez
+- Pedro Saravia
 
