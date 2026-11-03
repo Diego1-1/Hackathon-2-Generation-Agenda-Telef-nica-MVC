@@ -5,7 +5,7 @@ package com.hackathon.agenda.controlador;
 import com.hackathon.agenda.modelo.Agenda;// importamos el modeolo, osea guardar buscar y borrar
 import com.hackathon.agenda.modelo.Contacto; // importamos la entidad e contacto nombres apellidos tel etc
 import com.hackathon.agenda.vista.VentanaPrincipal; // importamos la vista  la ventana de los campos botones  etc
-import javax.swing.table.DefaultTableMOdel; // con defaulmodel ees el modelo de datos como la filas y colomnas
+import javax.swing.table.DefaultTableModel; // con defaulmodel ees el modelo de datos como la filas y colomnas
 import java.util.List;// importamos lista para usaar listas
 
 public class AgendaControlador {
@@ -30,12 +30,12 @@ public class AgendaControlador {
         vista.getBtnAgregar().addActionListener(e ->agregar());// cuando haga clic en agregar se ejecura el agregar e es una exprecion lambda
         vista.getBtnModificar().addActionListener(e -> modificarTelefono()); // lo mismo cuando precione modificar pues ejecuta modificar
         vista.getBtnEliminar().addActionListener(e -> eliminar()); //lo mismo con eliminar
-        vista.getBtnEliminar().addActionListener(e -> eliminar());// igualmente
+        vista.getBtnBuscar().addActionListener(e -> buscar());// igualmente
         vista.getBtnLimpiar().addActionListener(e -> limpiarFormulario());// este vacia el formulario
 
         // vamos con la sincronizacion cuando el litener se activa cada vez que cambia la fila seleccionada
         vista.getTabla().getSelectionModel().addListSelectionListener(e -> {
-           if(!e.getValuesAdjusting()){//el adjusting es un true mientras la selecciion aun este cambiando
+           if(!e.getValueIsAdjusting()){//el adjusting es un true mientras la selecciion aun este cambiando
                // esperamos q eu finalice par no ejecutar el codigo de nuevo y quede repetido
                cargarFilaSeleccionada();//copianos losdarow de la fila a los campos de texto
            }
@@ -50,13 +50,13 @@ public class AgendaControlador {
         try{// con try intrntamos hacer la operacion, si algo falla saltamos al cathc
            //creamos un contacto con lo que el usuario escribio en llos 3 campos
            // el contructor de contacto valida nombre vacios etc y lanza la exepcion de que algo esta mal
-           contacto c = new Contacto(
+           Contacto c = new Contacto(
                    vista.getTxtNombre().getText(),
                    vista.getTxtApellido().getText(),
                    vista.getTxtTelefono().getText());
 
            agenda.añadirContacto(c);// pedimos a la agenda que lo guarde y valida si hay duplicados y espacios
-           refescarTabla();//este puento es si no hubo un error y se actualiza la tabla ára mostrarnos el nuevo contacto
+           refrescarTabla();//este puento es si no hubo un error y se actualiza la tabla ára mostrarnos el nuevo contacto
            limpiarFormulario();// se vacia el formulario para el siguiente registr
            vista.mostrarExito("contacto agregado espacios libres "+ agenda.espaciosLibres());
 
@@ -96,10 +96,10 @@ public class AgendaControlador {
         }
 
         try {
-            DefaultTableModel m = vista.getModeloTala();// definimos el modelo de la tabla para leer los vallores de la fila
+            DefaultTableModel m = vista.getModeloTabla();// definimos el modelo de la tabla para leer los vallores de la fila
             // se arma el contadod desde la fila para no depender de que el telefono escrito en el campo sea valido
             // se llena segun las pociciones 012
-            contacto nc =new Contacto( m.getValueAt(fila, 0).toString(),
+           Contacto c =new Contacto( m.getValueAt(fila, 0).toString(),
                     m.getValueAt(fila, 1).toString(),
                     m.getValueAt(fila, 2).toString());
 
@@ -111,7 +111,7 @@ public class AgendaControlador {
 
 
 
-        }catch ((RuntimeException ex){
+        }catch (RuntimeException ex){
             vista.mostrarError(mensaje(ex));
         }
     }
@@ -119,7 +119,7 @@ public class AgendaControlador {
     //buscar
     private void buscar() {
         try {
-            String telefono = agenda.buscar Contacto(
+            String telefono = agenda.buscarContacto(
                     vista.getTxtnombre().getText(),
                     vista.getTxtApellido().getText());
 
