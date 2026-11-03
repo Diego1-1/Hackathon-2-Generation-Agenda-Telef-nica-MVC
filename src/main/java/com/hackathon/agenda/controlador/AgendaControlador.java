@@ -161,6 +161,7 @@ public class AgendaControlador {
             m.addRow(new Object[]{c.getNombre(), c.getApellido(), c.getTelefono()});// agregamos a una fila nueva los datos
 
         }
+        vista.actualizarEspaciosLibres(agenda.espaciosLibres());
     }
 
     // copa de los datows de la fila que elegimos
