@@ -9,7 +9,7 @@ public class Agenda {
 
     public Agenda() {
         this.capacidadMaxima = 10;
-        this.contactos = new Arraylist<>();
+        this.contactos = new ArrayList<>();
     }
 
     public Agenda(int capacidadMaxima) {
@@ -34,7 +34,7 @@ public class Agenda {
     }
 
     public espaciosLibres() {
-        this.capacidadMaxima - return this.contactos.size();
+        return this.capacidadMaxima - this.contactos.size();
     }
 
     public boolean existeContacto(Contacto c) {
